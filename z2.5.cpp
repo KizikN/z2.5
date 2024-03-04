@@ -23,18 +23,29 @@ int main()
 	char* L2 = new char[n2];
 
 	Get_in_Sort(L1, L2, Am, Ln, n1, n2, am);
-	char* L = new char[am + 1];
-	int aM = 0;
-	L[aM] = Ln[aM];
-	for (int i = 1; i < n1 + n2; i++)
-		if (L[aM] != Ln[i])
-		{
-			aM++;
-			L[aM] = Ln[i];
-		}
 	
-	for (int i = 0; i <= aM; i++)
-		cout << L[i] << " ";
+	int aM = 0;
+	for (int i = 0; i < n1 + n2 - 1; i++)
+	{
+
+		if (Ln[aM] != Ln[Am[i]])
+		{
+			Am[aM] = Am[i];
+			aM = Am[i];
+		}
+		else
+			Am[i] = -1;
+	}
+	Am[aM] = Am[n1 + n2 - 1];
+
+	aM = 0;
+	cout << endl;
+	while (Am[aM] != Am[n1 + n2 - 1])
+	{
+		cout << Ln[Am[aM]] << " ";
+		aM = Am[aM];
+	}
+	cout << Ln[Am[aM]] << endl;
 
 	return 0;
 }
